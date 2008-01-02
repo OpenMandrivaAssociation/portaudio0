@@ -17,6 +17,7 @@ Patch1:		portaudio_v18_1-unix_oss.diff
 Patch2:		portaudio_v18_1-oss_in_only.diff
 BuildRequires:	autoconf2.5
 BuildRequires:	automake1.7
+BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
