@@ -4,7 +4,7 @@
 %define libname %mklibname portaudio %{major}
 %define conflict1 %mklibname portaudio 2
 
-Summary:	PortAudio is a free, cross platform, open-source, audio I/O library
+Summary:	Free, cross platform, open-source, audio I/O library
 Name:		portaudio0
 Version:	18.1
 Release:	%mkrel 7
@@ -35,7 +35,7 @@ included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc. 
 
 %package -n	%{libname}
-Summary:	PortAudio is a free, cross platform, open-source, audio I/O library
+Summary:	Free, cross platform, open-source, audio I/O library
 Group:          System/Libraries
 
 %description -n	%{libname}
