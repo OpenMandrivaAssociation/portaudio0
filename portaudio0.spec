@@ -2,12 +2,11 @@
 
 %define	major 0
 %define libname %mklibname portaudio %{major}
-%define conflict1 %mklibname portaudio 2
 
 Summary:	Cross platform audio I/O library
 Name:		portaudio0
 Version:	18.1
-Release:	%mkrel 8
+Release:	%mkrel 9
 URL:		http://www.portaudio.com/
 Group:		System/Libraries
 License:	BSD
@@ -56,7 +55,7 @@ distortion on a guitar, list available audio devices, etc.
 %package -n	%{libname}-devel
 Summary:	Static library and header files for the PortAudio library
 Group:		Development/C
-Conflicts:	%{conflict1}-devel
+Conflicts:	portaudio-devel
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
 
