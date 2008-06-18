@@ -6,7 +6,7 @@
 Summary:	Cross platform audio I/O library
 Name:		portaudio0
 Version:	18.1
-Release:	%mkrel 9
+Release:	%mkrel 10
 URL:		http://www.portaudio.com/
 Group:		System/Libraries
 License:	BSD
