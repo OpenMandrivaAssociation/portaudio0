@@ -14,8 +14,6 @@ Source0:	portaudio_v18_1.tar.bz2
 Patch0:		portaudio_v18_1-libtool.diff
 Patch1:		portaudio_v18_1-unix_oss.diff
 Patch2:		portaudio_v18_1-oss_in_only.diff
-BuildRequires:	autoconf2.5
-BuildRequires:	automake1.7
 BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
@@ -95,12 +93,9 @@ find . -type f | xargs perl -p -i -e 's/\r//'
 %patch2 -p0 -b .oss_in_only
 
 %build
-export WANT_AUTOCONF_2_5=1
-rm -f configure
-libtoolize --copy --force; aclocal-1.7; autoconf
-
+autoreconf -fi
+chmod a+x ./configure
 %configure2_5x
-
 %make
 
 #CC="gcc" \
