@@ -1,0 +1,27 @@
+--- pa_unix_oss/pa_unix_oss.c	2005-09-15 16:39:22.000000000 +0200
++++ pa_unix_oss/pa_unix_oss.c.oden	2005-09-15 16:39:22.000000000 +0200
+@@ -346,13 +346,13 @@
+     if( pahsc->pahsc_NativeOutputBuffer )
+     {
+        ioctl(pahsc->pahsc_OutputHandle, SNDCTL_DSP_GETOPTR, &info);
+-       delta = (info.bytes - pahsc->pahsc_LastPosPtr) & 0x000FFFFF;
++       delta = (info.bytes - pahsc->pahsc_LastPosPtr);
+        return (pahsc->pahsc_LastStreamBytes + delta) / (past->past_NumOutputChannels * sizeof(short));
+     }
+     else
+     {
+        ioctl(pahsc->pahsc_InputHandle, SNDCTL_DSP_GETIPTR, &info);
+-       delta = (info.bytes - pahsc->pahsc_LastPosPtr) & 0x000FFFFF;
++       delta = (info.bytes - pahsc->pahsc_LastPosPtr);
+        return (pahsc->pahsc_LastStreamBytes + delta) / (past->past_NumInputChannels * sizeof(short));
+     }
+ }
+@@ -372,7 +372,7 @@
+   {
+     ioctl(pahsc->pahsc_InputHandle, SNDCTL_DSP_GETIPTR, &info);
+   }
+-  delta = (info.bytes - pahsc->pahsc_LastPosPtr) & 0x000FFFFF;
++  delta = (info.bytes - pahsc->pahsc_LastPosPtr);
+   pahsc->pahsc_LastStreamBytes += delta;
+   pahsc->pahsc_LastPosPtr = info.bytes;
+ }
