@@ -102,20 +102,7 @@ chmod a+x ./configure
 #    CFLAGS="%{optflags} -fPIC -DPIC -D_REENTRANT -D_GNU_SOURCE -Ipa_common -Ipablio"
 
 %install
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
-
 %makeinstall_std
-
-%if %mdkversion < 200900
-%post -n %{libname} -p /sbin/ldconfig
-%endif
-
-%if %mdkversion < 200900
-%postun -n %{libname} -p /sbin/ldconfig
-%endif
-
-%clean
-[ "%{buildroot}" != "/" ] && rm -rf %{buildroot}
 
 %files -n %{libname}
 %defattr(-,root,root)
@@ -127,7 +114,82 @@ chmod a+x ./configure
 %doc docs/*
 %{_includedir}/*
 %{_libdir}/*.so
-%{_libdir}/*.la
 %{_libdir}/*.a
 
+
+
+
+%changelog
+* Thu May 05 2011 Oden Eriksson <oeriksson@mandriva.com> 18.1-14mdv2011.0
++ Revision: 667806
+- mass rebuild
+
+* Tue Dec 21 2010 Funda Wang <fwang@mandriva.org> 18.1-13mdv2011.0
++ Revision: 623669
+- update libtool patch
+- fix build
+
+  + Oden Eriksson <oeriksson@mandriva.com>
+    - rebuild
+
+* Tue Mar 16 2010 Oden Eriksson <oeriksson@mandriva.com> 18.1-12mdv2010.1
++ Revision: 521158
+- rebuilt for 2010.1
+
+* Thu Sep 03 2009 Christophe Fergeau <cfergeau@mandriva.com> 18.1-11mdv2010.0
++ Revision: 426748
+- rebuild
+
+* Wed Jun 18 2008 Thierry Vignaud <tv@mandriva.org> 18.1-10mdv2009.0
++ Revision: 225022
+- rebuild
+
+  + Pixel <pixel@mandriva.com>
+    - do not call ldconfig in %%post/%%postun, it is now handled by filetriggers
+
+* Thu Mar 06 2008 Anssi Hannula <anssi@mandriva.org> 18.1-9mdv2008.1
++ Revision: 180948
+- simplify conflicts
+
+* Mon Feb 18 2008 Thierry Vignaud <tv@mandriva.org> 18.1-8mdv2008.1
++ Revision: 171048
+- rebuild
+- summary is not licence tag
+- fix "foobar is blabla" summary (=> "blabla") so that it looks nice in rpmdrake
+- kill re-definition of %%buildroot on Pixel's request
+
+  + Olivier Blin <oblin@mandriva.com>
+    - restore BuildRoot
+
+
+* Tue Nov 14 2006 Anssi Hannula <anssi@mandriva.org> 18.1-7mdv2007.0
++ Revision: 83964
+- provide portaudio0-devel
+
+* Mon Nov 13 2006 Oden Eriksson <oeriksson@mandriva.com> 18.1-6mdv2007.0
++ Revision: 83786
+- fix correct conflict
+
+* Mon Nov 13 2006 Oden Eriksson <oeriksson@mandriva.com> 18.1-5mdv2007.1
++ Revision: 83712
+- rebuild
+- Import portaudio0
+
+* Mon Nov 13 2006 Oden Eriksson <oeriksson@mandriva.com> 18.1-1mdv2007.1
+- renamed to portaudio0
+- nuke provides
+
+* Fri Sep 16 2005 Oden Eriksson <oeriksson@mandriva.com> 18.1-4mdk
+- use libtool to make the shared lib (P0, debian)
+- added two oss patches (P1, P2, debian)
+
+* Fri Sep 16 2005 Oden Eriksson <oeriksson@mandriva.com> 18.1-3mdk
+- link it against -lpthread (gb)
+
+* Fri May 06 2005 Oden Eriksson <oeriksson@mandriva.com> 18.1-2mdk
+- fix requires-on-release
+
+* Mon Sep 13 2004 Oden Eriksson <oeriksson@mandrakesoft.com> 18.1-1mdk
+- initial mandrake package
+- build it different and add pablio to it (P0)
 
