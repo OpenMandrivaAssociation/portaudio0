@@ -1,12 +1,14 @@
-%define _provides_exceptions devel(libportaudio
+# (tpg) is this still needed ?
+#define _provides_exceptions devel(libportaudio
 
-%define	major 0
+%define major 0
 %define libname %mklibname portaudio %{major}
+%define develname %mklibname portaudio -d
 
 Summary:	Cross platform audio I/O library
 Name:		portaudio0
 Version:	18.1
-Release:	%mkrel 14
+Release:	15
 URL:		http://www.portaudio.com/
 Group:		System/Libraries
 License:	BSD
@@ -14,7 +16,6 @@ Source0:	portaudio_v18_1.tar.bz2
 Patch0:		portaudio_v18_1-libtool.diff
 Patch1:		portaudio_v18_1-unix_oss.diff
 Patch2:		portaudio_v18_1-oss_in_only.diff
-BuildRoot:	%{_tmppath}/%{name}-%{version}-root
 
 %description
 PortAudio is a free, cross platform, open-source, audio I/O 
@@ -33,7 +34,7 @@ distortion on a guitar, list available audio devices, etc.
 
 %package -n	%{libname}
 Summary:	Cross platform audio I/O library
-Group:          System/Libraries
+Group:		System/Libraries
 
 %description -n	%{libname}
 PortAudio is a free, cross platform, open-source, audio I/O 
@@ -50,14 +51,15 @@ sound using a simple callback function. Example programs are
 included that synthesize sine waves and pink noise, perform fuzz
 distortion on a guitar, list available audio devices, etc. 
 
-%package -n	%{libname}-devel
+%package -n	%{develname}
 Summary:	Static library and header files for the PortAudio library
 Group:		Development/C
 Conflicts:	portaudio-devel
 Requires:	%{libname} = %{version}
 Provides:	%{name}-devel = %{version}-%{release}
+Obsoletes:	%{mklibname portaudio 0}-devel < 18.1-15
 
-%description -n	%{libname}-devel
+%description -n	%{develname}
 PortAudio is a free, cross platform, open-source, audio I/O 
 library. It lets you write simple audio programs in 'C' that will
 compile and run on many platforms including Windows, Macintosh 
@@ -105,12 +107,10 @@ chmod a+x ./configure
 %makeinstall_std
 
 %files -n %{libname}
-%defattr(-,root,root)
 %doc LICENSE.txt README.txt
-%{_libdir}/*.so.*
+%{_libdir}/*.so.%{major}*
 
-%files -n %{libname}-devel
-%defattr(-,root,root)
+%files -n %{develname}
 %doc docs/*
 %{_includedir}/*
 %{_libdir}/*.so
