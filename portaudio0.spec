@@ -11,7 +11,7 @@ Version:	18.1
 Release:	25
 Group:		System/Libraries
 License:	BSD
-Url:		http://www.portaudio.com/
+Url:		https://www.portaudio.com/
 Source0:	portaudio_v18_1.tar.bz2
 Patch0:		portaudio_v18_1-libtool.diff
 Patch1:		portaudio_v18_1-unix_oss.diff
